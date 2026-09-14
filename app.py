@@ -1,21 +1,29 @@
+import os
 from flask import Flask, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # السماح للواجهة بالاتصال بالسيرفر بدون حظر CORS
+CORS(app)  # تفعيل CORS للربط مع الـ Frontend/PWA بدون حظر
 
 @app.route('/')
 def home():
-    return jsonify({"status": "Gamer Streak Server is Running 24/7!"})
+    return jsonify({
+        "status": "Gamer Streak Backend is Active & Running!",
+        "version": "1.0.0"
+    })
 
 @app.route('/api/streak', methods=['GET'])
 def get_streak():
-    # هنا كود جلب البيانات من Firestore و PSN الخاص بمشروعك
-    # استبدل البيانات دي بالبيانات الحقيقية التي تجلبها من الداتابيز
+    # كود تجريبي لإرجاع بيانات الـ Streak والـ PSN
+    # يمكنك ربط الداتابيز (Firestore) أو الـ PSN API هنا مباشرة
     return jsonify({
-        "current_streak": 0,
-        "online": False
+        "current_streak": 1,
+        "online": True,
+        "username": "PSN_User",
+        "last_updated": "Today"
     })
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    # جلب المنفذ تلقائياً من بيئة التشغيل على Railway
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
