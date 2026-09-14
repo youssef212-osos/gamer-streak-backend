@@ -1,5 +1,3 @@
 Flask
 flask-cors
-firebase-admin
-psnawp-api
 gunicorn
