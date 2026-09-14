@@ -3,7 +3,7 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # تفعيل CORS للربط مع الـ Frontend/PWA بدون حظر
+CORS(app)  # تفعيل CORS عشان الفرونت إند يقدر يتكلم مع الباك إند بدون مشاكل
 
 @app.route('/')
 def home():
@@ -14,8 +14,7 @@ def home():
 
 @app.route('/api/streak', methods=['GET'])
 def get_streak():
-    # كود تجريبي لإرجاع بيانات الـ Streak والـ PSN
-    # يمكنك ربط الداتابيز (Firestore) أو الـ PSN API هنا مباشرة
+    # مسار جلب الـ Streak والـ PSN Status
     return jsonify({
         "current_streak": 1,
         "online": True,
@@ -24,6 +23,5 @@ def get_streak():
     })
 
 if __name__ == '__main__':
-    # جلب المنفذ تلقائياً من بيئة التشغيل على Railway
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
