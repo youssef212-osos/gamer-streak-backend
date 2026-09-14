@@ -22,6 +22,5 @@ def get_streak():
     })
 
 if __name__ == '__main__':
-    # قراءة البورت المخصص من بيئة Railway تلقائياً مع استخدام 8080 كاحتياطي
-    port = int(os.environ.get("PORT", 8080))
-    app.run(host='0.0.0.0', port=port)
+    # تحديد البورت 8080 صراحة بناءً على إعدادات Railway
+    app.run(host='0.0.0.0', port=8080)
